@@ -15,7 +15,7 @@ public class UI {
 //				"  " + fixedLengthString(book.getTitle(),20) +
 //				"  " + fixedLengthString(book.getAuthor(), 20));
 
-			System.out.println(fixedLengthString(book.getBookId(), 6) +
+			System.out.println(fixedLengthString(book.getId(), 6) +
 				"  " + fixedLengthString(book.getTitle(),20) +
 				"  " + fixedLengthString(book.getAuthor(), 20));
 

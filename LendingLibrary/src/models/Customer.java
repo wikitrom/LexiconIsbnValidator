@@ -1,4 +1,8 @@
 package models;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import uilities.GenderType;
 
 public class Customer {
@@ -9,11 +13,16 @@ public class Customer {
 	private String title, firstName, surname;
 	private String address, phoneNumber, email;
 	private GenderType gender;
+	private Date expiryDate;
 
 	// Constructors
 	public Customer(String title, String firstName, String surname) {
+		GregorianCalendar gCal = new GregorianCalendar();
+		gCal.add(GregorianCalendar.YEAR, 1);
+
 		this.customerId = ++customerIdCount;
 		this.isValid = true;
+		setExpiryDate(gCal.getTime());		
 		setName(title, firstName, surname);
 		setAddress("unknown");
 		setPhoneNumber("unknown");
@@ -23,8 +32,12 @@ public class Customer {
 
 	public Customer(String title, String firstName, String surname, String address, String phoneNumber, String email,
 			GenderType gender) {
+		GregorianCalendar gCal = new GregorianCalendar();
+		gCal.add(GregorianCalendar.YEAR, 1);
+		
 		this.customerId = ++customerIdCount;
 		this.isValid = true;
+		setExpiryDate(gCal.getTime());		
 		setName(title, firstName, surname);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
@@ -112,6 +125,14 @@ public class Customer {
 
 	public void setValid(boolean isValid) {
 		this.isValid = isValid;
+	}
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 }

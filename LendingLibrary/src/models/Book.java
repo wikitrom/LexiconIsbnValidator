@@ -1,24 +1,23 @@
 package models;
 
-public class Book {
+public class Book extends Material {
 
-	private int bookId;
 	private String isbn;
-	private String title, author;
-	
+	private String author;
+	private int pageCount;
+
 	// Constructors
-	public Book(int bookId, String title, String author, String isbn) {
-		this.bookId = bookId;
-		this.title = title;
-		this.author	= author;
+	public Book(int id, String title, String author, String isbn, String branch, int pages) {
+		super(id, title, branch);
+		this.author = author;
 		this.isbn = isbn;
-			
+		this.pageCount = pages;
 	}
-	
+
 	// public methods
-	public String getTitle() {
-		return title;
-	}
+//	public String getTitle() {
+//		return super.getTitle();
+//	}
 
 	public String getAuthor() {
 		return author;
@@ -28,7 +27,11 @@ public class Book {
 		return isbn;
 	}
 
-	public int getBookId() {
-		return bookId;
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void sendForRepair() {
+		relocate("Repair shop");
 	}
 }
