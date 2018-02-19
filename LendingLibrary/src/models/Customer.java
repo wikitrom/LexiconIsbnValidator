@@ -1,3 +1,5 @@
+package models;
+import uilities.GenderType;
 
 public class Customer {
 
