@@ -45,7 +45,12 @@ public class Customer {
 	}
 
 	public String getMailingName() {
-		return (title + " " + firstName.substring(0, 1) + " " + surname);
+		StringBuilder sb = new StringBuilder(title);
+		sb.append(" ");
+		sb.append(firstName.substring(0, 1));
+		sb.append(" ");
+		sb.append(surname);
+		return (sb.toString());
 	}
 
 	public int getCustomerId() {
