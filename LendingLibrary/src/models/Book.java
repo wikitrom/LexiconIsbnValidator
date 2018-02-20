@@ -6,6 +6,7 @@ public class Book extends Material {
 	private String author;
 	private int pageCount;
 
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 	// Constructors
 	public Book(int id, String title, String author, String isbn, String branch, int pages) {
 		super(id, title, branch);
@@ -14,10 +15,17 @@ public class Book extends Material {
 		this.pageCount = pages;
 	}
 
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
+	// private methods
+	
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 	// public methods
-//	public String getTitle() {
-//		return super.getTitle();
-//	}
+	
+	@Override
+	public int getLoanPeriod() {  		//	abstract
+		return 21;
+	}
+	
 
 	public String getAuthor() {
 		return author;

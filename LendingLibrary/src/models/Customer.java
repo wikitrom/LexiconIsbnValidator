@@ -17,17 +17,7 @@ public class Customer {
 
 	// Constructors
 	public Customer(String title, String firstName, String surname) {
-		GregorianCalendar gCal = new GregorianCalendar();
-		gCal.add(GregorianCalendar.YEAR, 1);
-
-		this.customerId = ++customerIdCount;
-		this.isValid = true;
-		setExpiryDate(gCal.getTime());		
-		setName(title, firstName, surname);
-		setAddress("unknown");
-		setPhoneNumber("unknown");
-		setEmail("unknown");
-		setGender(GenderType.UNKNOWN);
+		this(title, firstName, surname, "unknown", "unknown", "unknown", GenderType.UNKNOWN);
 	}
 
 	public Customer(String title, String firstName, String surname, String address, String phoneNumber, String email,
@@ -53,6 +43,38 @@ public class Customer {
 	}
 
 	// Public methods
+	@Override
+	public String toString() {
+		return getMailingName();
+	}
+
+	
+	
+	@Override  									// generated
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + customerId;
+		result = prime * result + (isValid ? 1231 : 1237);
+		return result;
+	}
+
+	@Override  									// generated
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (customerId != other.customerId)
+			return false;
+		if (isValid != other.isValid)
+			return false;
+		return true;
+	}
+
 	public static int getNumberOfCustomers() {
 		return customerIdCount;
 	}

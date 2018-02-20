@@ -1,7 +1,8 @@
 package models;
-public class BookCatalog {
 
-	private Book[] bookArray = new Book[100];
+public class BookCatalog {
+	private int catalogSize = 100;
+	private Book[] bookArray = new Book[catalogSize];
 	private int nextPosition = 0;
 
 	// constructors
@@ -16,10 +17,14 @@ public class BookCatalog {
 		nextPosition++;
 	}
 
-	public Book findBook(String title) {
-		for (int i = 0; i < nextPosition; i++) {
-			if (bookArray[i].getTitle().equalsIgnoreCase(title)) {
-				return bookArray[i];
+	public Book findBook(String title) throws BookNotFoundException {
+		for (int i = 0; i < catalogSize; i++) {
+			try {
+				if (bookArray[i].getTitle().equalsIgnoreCase(title)) {
+					return bookArray[i];
+				}
+			} catch (Exception e) {
+				throw new BookNotFoundException();
 			}
 		}
 		return null;
