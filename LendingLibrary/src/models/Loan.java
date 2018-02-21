@@ -21,27 +21,45 @@ public class Loan {
 		this.book = book;
 		this.status = LoanStatusType.CURRENT;
 		startDate = new Date();
-
-		// due date is 2 weeks from now
-		GregorianCalendar gCal = new GregorianCalendar();
-		gCal.add(GregorianCalendar.DAY_OF_YEAR, 14);
-		setDueDate(gCal.getTime());
+		setDueDate(startDate, 14);
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// private methods
-	private void setDueDate(Date expiryDate) {
-		dueDate = expiryDate;
+	private void setDueDate(Date now, int daysOffset) {
+		// due date is 2 weeks from now
+		GregorianCalendar gCal = new GregorianCalendar();
+		gCal.setTime(now);
+		gCal.add(GregorianCalendar.DAY_OF_YEAR, daysOffset);
+		dueDate = gCal.getTime();
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// public methods
 	@Override
 	public String toString() {
-		// FIX: returnDate might be null
-		return "Loan [id=" + id + ", customer=" + customer.getMailingName() + ", book=" + book.getTitle()
-				+ ", startDate=" + startDate.toString() + ", dueDate=" + dueDate.toString() + ", returnDate="
-				+ returnDate.toString() + ", status=" + status.toString() + "]";
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Loan id=");
+		sb.append(id);
+		sb.append(":\n-------------------");
+		sb.append("\nStatus: ");
+		sb.append(status.toString());
+		sb.append("\nCustomer: ");
+		sb.append(customer.getMailingName());
+		sb.append("\nBook: ");
+		sb.append(book.getTitle());
+		sb.append("\nLent on: ");
+		sb.append(startDate.toString());
+		sb.append("\nDue: ");
+		sb.append(dueDate.toString());
+		sb.append("\nReturned on: ");
+		if (returnDate != null) {
+			sb.append(returnDate.toString());
+		} else {
+			sb.append("-");
+		}
+		return sb.toString();
 	}
 
 	// @Override
@@ -81,11 +99,12 @@ public class Loan {
 	public LoanStatusType getStatus() {
 		return status;
 	}
-	public void endLoan(Loan loan) {
+
+	public void endLoan() {
 		status = LoanStatusType.HISTORIC;
 		returnDate = new Date();
 	}
-	
+
 	// Date today = new Date();
 	// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd");
 	// GregorianCalendar gCal = new GregorianCalendar(2019,00,01);

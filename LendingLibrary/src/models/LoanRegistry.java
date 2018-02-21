@@ -14,38 +14,33 @@ public class LoanRegistry {
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// private methods
-	private int getNextFreeRegistryPosition() throws RegistryNoMoreSpaceException {
+	private int getNextFreeRegistryPosition() throws RegistryOutOfSpaceException {
 
 		for (int i = 0; i < registry.length; i++) {
 			if (registry[i] == null) {
 				return i;
 			}
 		}
-		throw new RegistryNoMoreSpaceException();
+		throw new RegistryOutOfSpaceException();
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// public methods
 
-	// addLoan
-	public void addLoan(Loan loan) throws RegistryBookNotAvailable, RegistryNoMoreSpaceException {
+	public void addLoan(Loan loan) throws RegistryBookNotAvailableException, RegistryOutOfSpaceException {
 		if (isBookOnLoan(loan.getBook())) {
-			throw new RegistryBookNotAvailable();
+			throw new RegistryBookNotAvailableException();
 		}
 
 		try {
 			int insertPosition = getNextFreeRegistryPosition();
-			// TODO: if no more space, handle and throw RegistryNoMoreSpace exception.
 			registry[insertPosition] = loan;
-		} catch (RegistryNoMoreSpaceException e) {
-			throw new RegistryNoMoreSpaceException();
+		} catch (RegistryOutOfSpaceException e) {
+			throw new RegistryOutOfSpaceException();
 		}
 	}
 
-	// findLoan
 	public Loan findLoan(int bookId) throws RegistryBookNotBorrowedException {
-		Loan foundLoan = null;
-
 		for (int i = 0; i < registry.length; i++) {
 			if (registry[i] != null) {
 				if ((registry[i].getStatus() == LoanStatusType.CURRENT) && registry[i].getBook().getId() == bookId) {
@@ -56,7 +51,6 @@ public class LoanRegistry {
 		throw new RegistryBookNotBorrowedException();
 	}
 
-	// isBookOnLoan
 	public boolean isBookOnLoan(Book book) {
 		try {
 			Loan loan = findLoan(book.getId());
@@ -64,5 +58,26 @@ public class LoanRegistry {
 		} catch (RegistryBookNotBorrowedException e) {
 			return false;
 		}
+	}
+
+	// bonus methods
+	public int numberOfRegsteredLoans() {
+		int noLoans = 0;
+		for (int i = 0; i < registry.length; i++) {
+			if (registry[i] != null) {
+				noLoans++;
+			}
+		}
+		return noLoans;
+	}
+
+	public int numberOfActiveLoans() {
+		int noActiveLoans = 0;
+		for (int i = 0; i < registry.length; i++) {
+			if ((registry[i] != null) && registry[i].getStatus() == LoanStatusType.CURRENT) {
+				noActiveLoans++;
+			}
+		}
+		return noActiveLoans;
 	}
 }

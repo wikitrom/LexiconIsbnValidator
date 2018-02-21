@@ -8,6 +8,8 @@ import models.BookCatalog;
 import models.BookNotFoundException;
 import models.Customer;
 import models.DVD;
+import models.Loan;
+import models.LoanRegistry;
 import uilities.GenderType;
 
 public class Main {
@@ -68,6 +70,91 @@ public class Main {
 		System.out.println(dvd1.equals(dvd2));
 		System.out.println(dvd1.equals(null));
 
+		// TEST loan's
+		LoanRegistry registry = new LoanRegistry();
+
+		Loan loan1 = new Loan(customer1, book1);
+		Loan loan2 = new Loan(customer1, book2);
+		Loan loan3 = new Loan(customer1, book3);
+		Loan loan4 = new Loan(customer1, book2);
+		Loan loan5 = new Loan(customer1, book2);
+
+		try {
+			registry.addLoan(loan1);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		try {
+			registry.addLoan(loan2);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		System.out.println("Is book " + book1.getTitle() + " on loan? " + registry.isBookOnLoan(book1));
+		System.out.println("Is book " + book2.getTitle() + " on loan? " + registry.isBookOnLoan(book2));
+		System.out.println("Is book " + book3.getTitle() + " on loan? " + registry.isBookOnLoan(book3));
+		System.out.println("+++++++++++++++++++++++++");
+		try {
+			registry.addLoan(loan3);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		loan2.endLoan();
+
+		System.out.println("Is book " + book1.getTitle() + " on loan? " + registry.isBookOnLoan(book1));
+		System.out.println("Is book " + book2.getTitle() + " on loan? " + registry.isBookOnLoan(book2));
+		System.out.println("Is book " + book3.getTitle() + " on loan? " + registry.isBookOnLoan(book3));
+		System.out.println("+++++++++++++++++++++++++");
+
+		try {
+			registry.addLoan(loan3);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		System.out.println("Is book " + book1.getTitle() + " on loan? " + registry.isBookOnLoan(book1));
+		System.out.println("Is book " + book2.getTitle() + " on loan? " + registry.isBookOnLoan(book2));
+		System.out.println("Is book " + book3.getTitle() + " on loan? " + registry.isBookOnLoan(book3));
+		System.out.println("+++++++++++++++++++++++++");
+
+		try {
+			registry.addLoan(loan2);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		try {
+			registry.addLoan(loan4);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		try {
+			registry.addLoan(loan5);
+		} catch (Exception e) {
+			System.out.println("Caught exception: " + e.toString());
+		}
+
+		System.out.println("Is book " + book1.getTitle() + " on loan? " + registry.isBookOnLoan(book1));
+		System.out.println("Is book " + book2.getTitle() + " on loan? " + registry.isBookOnLoan(book2));
+		System.out.println("Is book " + book3.getTitle() + " on loan? " + registry.isBookOnLoan(book3));
+		System.out.println("+++++++++++++++++++++++++");
+
+		System.out.println("Number of  registered loanes are " + registry.numberOfRegsteredLoans());
+		System.out.println("Number of currently active loanes are " + registry.numberOfActiveLoans());
+		System.out.println("+++++++++++++++++++++++++");
+		
+		System.out.println();
+		System.out.println(loan1);
+		System.out.println();
+		System.out.println(loan2);
+		System.out.println();
+		System.out.println(loan3);
+		System.out.println();
+		System.out.println(loan4);
+		
 		/*
 		 * // try lending dvd
 		 * 
