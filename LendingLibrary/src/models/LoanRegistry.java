@@ -40,10 +40,11 @@ public class LoanRegistry {
 		}
 	}
 
-	public Loan findLoan(int bookId) throws RegistryBookNotBorrowedException {
+	public Loan findLoan(String bookId) throws RegistryBookNotBorrowedException {
 		for (int i = 0; i < registry.length; i++) {
 			if (registry[i] != null) {
-				if ((registry[i].getStatus() == LoanStatusType.CURRENT) && registry[i].getBook().getId() == bookId) {
+				if ((registry[i].getStatus() == LoanStatusType.CURRENT)
+						&& registry[i].getBook().getId().equals(bookId)) {
 					return registry[i];
 				}
 			}

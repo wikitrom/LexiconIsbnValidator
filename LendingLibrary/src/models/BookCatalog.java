@@ -3,15 +3,15 @@ package models;
 import java.util.HashMap;
 
 public class BookCatalog {
-	private HashMap<Integer, Book> bookMap;
+	private HashMap<String, Book> bookMap;
 
 	// constructors
 	public BookCatalog() {
-		bookMap = new HashMap<Integer, Book>();
+		bookMap = new HashMap<String, Book>();
 	}
 
 	// public methods
-	public HashMap<Integer, Book> getBookMap() {
+	public HashMap<String, Book> getBookMap() {
 		return bookMap;
 	}
 

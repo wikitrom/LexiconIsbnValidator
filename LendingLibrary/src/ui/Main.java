@@ -23,9 +23,9 @@ public class Main {
 
 		BookCatalog bookCatalog = new BookCatalog();
 
-		Book book1 = new Book(1, "Introduction to Java", "Mats Bergstroem", "009955551112", "1st branch", 300);
-		Book book2 = new Book(2, "Introduction to C", "Mats Bergstroem", "009955551113", "1st branch", 50);
-		Book book3 = new Book(3, "Dummy book", "Mats Bergstroem", "009955551114", "2nd branch", 22);
+		Book book1 = new Book("1", "Introduction to Java", "Mats Bergstroem", "009955551112", "1st branch", 300);
+		Book book2 = new Book("2", "Introduction to C", "Mats Bergstroem", "009955551113", "1st branch", 50);
+		Book book3 = new Book("3", "Dummy book", "Mats Bergstroem", "009955551114", "2nd branch", 22);
 		UI ui = new UI();
 
 		bookCatalog.addBook(book1);
@@ -38,8 +38,8 @@ public class Main {
 				GenderType.FEMALE);
 		Customer customer3 = new Customer("Mr", "James", "Kirk");
 
-		DVD dvd1 = new DVD(100, "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
-		DVD dvd2 = new DVD(100, "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
+//		DVD dvd1 = new DVD("100", "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
+//		DVD dvd2 = new DVD("100", "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
 
 		ui.printHeader();
 		ui.printBookCatalog(bookCatalog.getBookMap());
@@ -63,10 +63,10 @@ public class Main {
 		System.out.println(customer3.getExpiryDate());
 
 		System.out.println(customer3);
-		System.out.println(dvd1);
+//		System.out.println(dvd1);
 		System.out.println(book2);
-		System.out.println(dvd1.equals(dvd2));
-		System.out.println(dvd1.equals(null));
+//		System.out.println(dvd1.equals(dvd2));
+//		System.out.println(dvd1.equals(null));
 
 		// TEST loan's
 		LoanRegistry registry = new LoanRegistry();

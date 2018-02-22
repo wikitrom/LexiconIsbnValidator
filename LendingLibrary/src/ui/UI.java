@@ -56,7 +56,7 @@ public class UI {
 
 	}
 
-	public void printBookCatalog(HashMap<Integer, Book> bookCatalog) {
+	public void printBookCatalog(HashMap<String, Book> bookCatalog) {
 		for (Book element : bookCatalog.values()) {
 			printBook(element);
 		}

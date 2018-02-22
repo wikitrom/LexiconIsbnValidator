@@ -16,9 +16,9 @@ class BookCatalogTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		catalog = new BookCatalog();
-		b1 = new Book(1, "TEST BOOK 1", "", "", "", 12);
-		b2 = new Book(2, "TEST BOOK 2", "", "", "", 12);
-		b3 = new Book(3, "TEST BOOK 3", "", "", "", 12);
+		b1 = new Book("1", "TEST BOOK 1", "", "", "", 12);
+		b2 = new Book("2", "TEST BOOK 2", "", "", "", 12);
+		b3 = new Book("3", "TEST BOOK 3", "", "", "", 12);
 
 	}
 

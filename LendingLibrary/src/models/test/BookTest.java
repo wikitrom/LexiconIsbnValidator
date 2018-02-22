@@ -13,9 +13,9 @@ class BookTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		book1 = new Book(0, "", "", "", "", 0);
-		book2 = new Book(1, "", "", "", "", 0);
-		book3 = new Book(0, "", "", "", "", 0);
+		book1 = new Book("0", "", "", "", "", 0);
+		book2 = new Book("1", "", "", "", "", 0);
+		book3 = new Book("0", "", "", "", "", 0);
 
 	}
 

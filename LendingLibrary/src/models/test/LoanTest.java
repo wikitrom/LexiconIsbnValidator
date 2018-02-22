@@ -21,7 +21,7 @@ class LoanTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-	book = new Book(0, "", "", "", "", 0);
+	book = new Book("0", "", "", "", "", 0);
 	customer = new Customer("", "", "");
 	loan = new Loan(customer, book);
 	}
@@ -38,7 +38,7 @@ class LoanTest {
 
 	@Test
 	void testDueDate() {
-		// Book book = new Book(0, "", "", "", "", 0);
+		// Book book = new Book("0", "", "", "", "", 0);
 		// Customer customer = new Customer("", "", "");
 		// Loan loan = new Loan(customer, book);
 

@@ -8,7 +8,7 @@ public class Book extends Material {
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 	// Constructors
-	public Book(int id, String title, String author, String isbn, String branch, int pages) {
+	public Book(String id, String title, String author, String isbn, String branch, int pages) {
 		super(id, title, branch);
 		this.author = author;
 		this.isbn = isbn;
