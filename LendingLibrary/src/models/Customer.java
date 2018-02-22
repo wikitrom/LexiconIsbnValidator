@@ -24,10 +24,10 @@ public class Customer {
 			GenderType gender) {
 		GregorianCalendar gCal = new GregorianCalendar();
 		gCal.add(GregorianCalendar.YEAR, 1);
-		
+
 		this.customerId = ++customerIdCount;
 		this.isValid = true;
-		setExpiryDate(gCal.getTime());		
+		setExpiryDate(gCal.getTime());
 		setName(title, firstName, surname);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
@@ -48,9 +48,7 @@ public class Customer {
 		return getMailingName();
 	}
 
-	
-	
-	@Override  									// generated
+	@Override // generated
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -59,7 +57,7 @@ public class Customer {
 		return result;
 	}
 
-	@Override  									// generated
+	@Override // generated
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -135,6 +133,10 @@ public class Customer {
 
 	public String getSurname() {
 		return surname;
+	}
+
+	public String getFistName() {
+		return firstName;
 	}
 
 	public void setSurname(String surname) {

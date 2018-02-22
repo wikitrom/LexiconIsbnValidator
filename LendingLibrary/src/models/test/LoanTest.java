@@ -1,9 +1,7 @@
 package models.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.junit.jupiter.api.BeforeEach;

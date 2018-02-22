@@ -1,52 +1,44 @@
 package models;
 
+import java.util.ArrayList;
+
 import uilities.LoanStatusType;
 
 public class LoanRegistry {
-	private int maxLoans = 100;
-	private Loan[] registry;
+	private ArrayList<Loan> registry;
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// constructors
 	public LoanRegistry() {
-		registry = new Loan[maxLoans];
+		registry = new ArrayList<Loan>();
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// private methods
-	private int getNextFreeRegistryPosition() throws RegistryOutOfSpaceException {
-
-		for (int i = 0; i < registry.length; i++) {
-			if (registry[i] == null) {
-				return i;
-			}
-		}
-		throw new RegistryOutOfSpaceException();
-	}
+//	private int getNextFreeRegistryPosition() throws RegistryOutOfSpaceException {
+//
+//		for (int i = 0; i < registry.length; i++) {
+//			if (registry[i] == null) {
+//				return i;
+//			}
+//		}
+//		throw new RegistryOutOfSpaceException();
+//	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// public methods
 
-	public void addLoan(Loan loan) throws RegistryBookNotAvailableException, RegistryOutOfSpaceException {
+	public void addLoan(Loan loan) throws RegistryBookNotAvailableException {
 		if (isBookOnLoan(loan.getBook())) {
 			throw new RegistryBookNotAvailableException();
 		}
-
-		try {
-			int insertPosition = getNextFreeRegistryPosition();
-			registry[insertPosition] = loan;
-		} catch (RegistryOutOfSpaceException e) {
-			throw new RegistryOutOfSpaceException();
-		}
+		registry.add(loan);
 	}
 
 	public Loan findLoan(String bookId) throws RegistryBookNotBorrowedException {
-		for (int i = 0; i < registry.length; i++) {
-			if (registry[i] != null) {
-				if ((registry[i].getStatus() == LoanStatusType.CURRENT)
-						&& registry[i].getBook().getId().equals(bookId)) {
-					return registry[i];
-				}
+		for (Loan loan : registry) {
+			if (loan.getStatus() == LoanStatusType.CURRENT && loan.getBook().getId().equals(bookId)) {
+				return loan;
 			}
 		}
 		throw new RegistryBookNotBorrowedException();
@@ -61,21 +53,17 @@ public class LoanRegistry {
 		}
 	}
 
+	
 	// bonus methods
 	public int numberOfRegsteredLoans() {
-		int noLoans = 0;
-		for (int i = 0; i < registry.length; i++) {
-			if (registry[i] != null) {
-				noLoans++;
-			}
-		}
-		return noLoans;
+		return registry.size();
 	}
 
 	public int numberOfActiveLoans() {
 		int noActiveLoans = 0;
-		for (int i = 0; i < registry.length; i++) {
-			if ((registry[i] != null) && registry[i].getStatus() == LoanStatusType.CURRENT) {
+		for (Loan loan : registry) 
+		{
+			if (loan.getStatus() == LoanStatusType.CURRENT) {
 				noActiveLoans++;
 			}
 		}
