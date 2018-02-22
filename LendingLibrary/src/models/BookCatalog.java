@@ -1,32 +1,36 @@
 package models;
 
+import java.util.HashMap;
+
 public class BookCatalog {
-	private int catalogSize = 100;
-	private Book[] bookArray = new Book[catalogSize];
-	private int nextPosition = 0;
+	private HashMap<Integer, Book> bookMap;
 
 	// constructors
+	public BookCatalog() {
+		bookMap = new HashMap<Integer, Book>();
+	}
 
 	// public methods
-	public Book[] getBookArray() {
-		return bookArray;
+	public HashMap<Integer, Book> getBookMap() {
+		return bookMap;
+	}
+
+	public int getNumberOfBooks() {
+		return bookMap.size();
 	}
 
 	public void addBook(Book newBook) {
-		bookArray[nextPosition] = newBook;
-		nextPosition++;
+		bookMap.put(newBook.getId(), newBook);
 	}
 
 	public Book findBook(String title) throws BookNotFoundException {
-		for (int i = 0; i < catalogSize; i++) {
-			try {
-				if (bookArray[i].getTitle().equalsIgnoreCase(title)) {
-					return bookArray[i];
-				}
-			} catch (Exception e) {
-				throw new BookNotFoundException();
+		title = title.trim();
+
+		for (Book element : bookMap.values()) {
+			if (element.getTitle().equalsIgnoreCase(title)) {
+				return element;
 			}
 		}
-		return null;
+		throw new BookNotFoundException();
 	}
 }

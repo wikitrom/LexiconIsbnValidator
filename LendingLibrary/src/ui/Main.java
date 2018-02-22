@@ -42,7 +42,7 @@ public class Main {
 		DVD dvd2 = new DVD(100, "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
 
 		ui.printHeader();
-		ui.printBookCatalog(bookCatalog.getBookArray());
+		ui.printBookCatalog(bookCatalog.getBookMap());
 
 		// System.out.println(book1.getTitle() + " is at " + book1.getBranch());
 		// book1.relocate("2nd branch");
@@ -54,9 +54,7 @@ public class Main {
 
 		try {
 			Book foundBook = bookCatalog.findBook("dummy book");
-			if (foundBook != null) {
-				System.out.println("Found the book titled \"" + foundBook.getTitle() + "\"");
-			}
+			System.out.println("Found the book titled \"" + foundBook.getTitle() + "\"");
 		} catch (BookNotFoundException e) {
 			System.out.println("Book not found!");
 		}
@@ -145,7 +143,7 @@ public class Main {
 		System.out.println("Number of  registered loanes are " + registry.numberOfRegsteredLoans());
 		System.out.println("Number of currently active loanes are " + registry.numberOfActiveLoans());
 		System.out.println("+++++++++++++++++++++++++");
-		
+
 		System.out.println();
 		System.out.println(loan1);
 		System.out.println();
@@ -154,7 +152,7 @@ public class Main {
 		System.out.println(loan3);
 		System.out.println();
 		System.out.println(loan4);
-		
+
 		/*
 		 * // try lending dvd
 		 * 
