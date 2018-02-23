@@ -33,7 +33,7 @@ public abstract class Material {
 
 	@Override
 	public String toString() {
-		return getTitle();
+		return id + " : " + title;
 	}
 
 	@Override

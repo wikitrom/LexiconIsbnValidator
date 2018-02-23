@@ -1,13 +1,15 @@
 package ui;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import models.Book;
+import models.Material;
 
 public class UI {
 
 	public void printHeader() {
-		System.out.println("BookID  Title                 Author");
+		System.out.println("Type  ID    Title                 Author/Director");
 		;
 	}
 
@@ -56,9 +58,10 @@ public class UI {
 
 	}
 
-	public void printBookCatalog(HashMap<String, Book> bookCatalog) {
-		for (Book element : bookCatalog.values()) {
-			printBook(element);
+	public void printMaterialCatalog(TreeMap<String, Material> materialCatalog) {
+		for (Material element : materialCatalog.values()) {
+			System.out.println(element.toString());
 		}
 	}
+
 }

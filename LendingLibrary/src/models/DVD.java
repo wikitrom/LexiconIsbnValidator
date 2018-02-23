@@ -17,15 +17,20 @@ public class DVD extends Material {
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// private methods
-	
+
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// public methods
 	@Override
-	public int getLoanPeriod() {		//	abstract
+	public String toString() {
+		return " DVD: " + getId() + " " + getTitle() + " / " + getDirector();
+	}
+
+	@Override
+	public int getLoanPeriod() { // abstract
 		return 7;
 	}
-	
-	@Override	
+
+	@Override
 	public boolean lend(Customer customer) {
 		if (licenced) {
 			return super.lend(customer);
@@ -33,7 +38,7 @@ public class DVD extends Material {
 			return false;
 		}
 	}
-	
+
 	public boolean getLicence() {
 		return licenced;
 	}
@@ -41,5 +46,9 @@ public class DVD extends Material {
 	public void licence() {
 		this.licenced = true;
 	}
-	
+
+	public String getDirector() {
+		return director;
+	}
+
 }

@@ -8,13 +8,14 @@ import uilities.GenderType;
 public class Customer {
 
 	private static int customerIdCount = 0;
-	private int customerId;
+
+	final private int customerId;
 	boolean isValid = false;
 	private String title, firstName, surname;
 	private String address, phoneNumber, email;
 	private GenderType gender;
 	private Date expiryDate;
-
+	
 	// Constructors
 	public Customer(String title, String firstName, String surname) {
 		this(title, firstName, surname, "unknown", "unknown", "unknown", GenderType.UNKNOWN);
@@ -22,12 +23,13 @@ public class Customer {
 
 	public Customer(String title, String firstName, String surname, String address, String phoneNumber, String email,
 			GenderType gender) {
-		GregorianCalendar gCal = new GregorianCalendar();
-		gCal.add(GregorianCalendar.YEAR, 1);
-
 		this.customerId = ++customerIdCount;
 		this.isValid = true;
+
+		GregorianCalendar gCal = new GregorianCalendar();
+		gCal.add(GregorianCalendar.YEAR, 1);
 		setExpiryDate(gCal.getTime());
+
 		setName(title, firstName, surname);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
@@ -71,10 +73,6 @@ public class Customer {
 		if (isValid != other.isValid)
 			return false;
 		return true;
-	}
-
-	public static int getNumberOfCustomers() {
-		return customerIdCount;
 	}
 
 	public String getMailingName() {

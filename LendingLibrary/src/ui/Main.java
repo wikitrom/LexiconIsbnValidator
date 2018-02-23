@@ -1,36 +1,48 @@
 package ui;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import models.Book;
-import models.BookCatalog;
-import models.BookNotFoundException;
 import models.Customer;
 import models.DVD;
 import models.Loan;
 import models.LoanRegistry;
+import models.Material;
+import models.MaterialCatalog;
+import models.MaterialNotFoundException;
 import uilities.GenderType;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		// double d = 1.2345;
-		// Locale sweden = new Locale("se", "se");
-		// NumberFormat nf = NumberFormat.getNumberInstance(sweden);
-		// System.out.println(nf.format(d));
+//		int limit = 21;
+//		int a = 22;
+//		int b = 23;
+//
+//		if ( (limit - a ) >= 0)  { 
+//			if (a>b) { 
+//				System.out.println(a);
+//			} else if ((limit -b) >= 0) {
+//				System.out.println(b);
+//			} else {
+//				System.out.println(a);
+//			}
+//		} else if ((limit - b) >= 0) {
+//			System.out.println(b);
+//		} else {
+//			System.out.println(0);
+//		}
+//		System.out.println("------------------------");
 
-		BookCatalog bookCatalog = new BookCatalog();
+		MaterialCatalog materialCatalog = new MaterialCatalog();
 
 		Book book1 = new Book("1", "Introduction to Java", "Mats Bergstroem", "009955551112", "1st branch", 300);
 		Book book2 = new Book("2", "Introduction to C", "Mats Bergstroem", "009955551113", "1st branch", 50);
 		Book book3 = new Book("3", "Dummy book", "Mats Bergstroem", "009955551114", "2nd branch", 22);
 		UI ui = new UI();
 
-		bookCatalog.addBook(book1);
-		bookCatalog.addBook(book2);
-		bookCatalog.addBook(book3);
+		materialCatalog.addMaterial(book1);
+		materialCatalog.addMaterial(book2);
+		materialCatalog.addMaterial(book3);
 
 		Customer customer1 = new Customer("Mr", "Nisse", "Hult", "Java avenue 42", "+468555555", "hallo@wrold.com",
 				GenderType.MALE);
@@ -38,11 +50,14 @@ public class Main {
 				GenderType.FEMALE);
 		Customer customer3 = new Customer("Mr", "James", "Kirk");
 
-//		DVD dvd1 = new DVD("100", "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
-//		DVD dvd2 = new DVD("100", "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
+		DVD dvd1 = new DVD("100", "Mitt liv som hund", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
+		DVD dvd2 = new DVD("101", "Mitt liv som orm", "dvd branch", "Lasse Hellstroem", "dvd-m-l-s-h-42", 95);
+
+		materialCatalog.addMaterial(dvd1);
+		materialCatalog.addMaterial(dvd2);
 
 		ui.printHeader();
-		ui.printBookCatalog(bookCatalog.getBookMap());
+		ui.printMaterialCatalog(materialCatalog.getMap());
 
 		// System.out.println(book1.getTitle() + " is at " + book1.getBranch());
 		// book1.relocate("2nd branch");
@@ -53,9 +68,10 @@ public class Main {
 		// System.out.println(book2.getTitle() + " is at " + book2.getBranch());
 
 		try {
-			Book foundBook = bookCatalog.findBook("dummy book");
+			System.out.println();
+			Material foundBook = materialCatalog.findMaterial("dummy book");
 			System.out.println("Found the book titled \"" + foundBook.getTitle() + "\"");
-		} catch (BookNotFoundException e) {
+		} catch (MaterialNotFoundException e) {
 			System.out.println("Book not found!");
 		}
 
@@ -63,10 +79,10 @@ public class Main {
 		System.out.println(customer3.getExpiryDate());
 
 		System.out.println(customer3);
-//		System.out.println(dvd1);
+		// System.out.println(dvd1);
 		System.out.println(book2);
-//		System.out.println(dvd1.equals(dvd2));
-//		System.out.println(dvd1.equals(null));
+		// System.out.println(dvd1.equals(dvd2));
+		// System.out.println(dvd1.equals(null));
 
 		// TEST loan's
 		LoanRegistry registry = new LoanRegistry();
@@ -74,7 +90,7 @@ public class Main {
 		Loan loan1 = new Loan(customer1, book1);
 		Loan loan2 = new Loan(customer1, book2);
 		Loan loan3 = new Loan(customer1, book3);
-		Loan loan4 = new Loan(customer1, book2);
+		Loan loan4 = new Loan(customer2, book2);
 		Loan loan5 = new Loan(customer1, book2);
 
 		try {
