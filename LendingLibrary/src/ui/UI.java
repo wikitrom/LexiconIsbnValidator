@@ -1,7 +1,6 @@
 package ui;
 
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.Map;
 
 import models.Book;
 import models.Material;
@@ -9,8 +8,9 @@ import models.Material;
 public class UI {
 
 	public void printHeader() {
-		System.out.println("Type  ID    Title                 Author/Director");
-		System.out.println("-----------------------------------------------------------------");
+		String header = fixedLengthString("Type", 5) + " " + fixedLengthString("ID", 10) + " "
+				+ fixedLengthString("Titel", 25) + " " + fixedLengthString("Author/Director", 20);
+		System.out.println(header);
 		;
 	}
 
@@ -27,7 +27,7 @@ public class UI {
 
 	}
 
-	private String fixedLengthString(String start, int length) {
+	public String fixedLengthString(String start, int length) {
 		// TODO: Fix padding problem
 		if (start.length() >= length) {
 			return start.substring(0, length);
@@ -39,27 +39,13 @@ public class UI {
 		}
 	}
 
-	private String fixedLengthString(int number, int length) {
-		// TODO: Fix padding problem
-
+	public String fixedLengthString(int number, int length) {
 		String start = String.valueOf(number);
-
-		// if (start.length() >= length) {
-		// return start.substring(0, length);
-		// } else {
-		// while (start.length() < length) {
-		// start += " ";
-		// }
-		// return start;
-		//
-		// }
-		//
-
 		return fixedLengthString(start, length);
 
 	}
 
-	public void printMaterialCatalog(TreeMap<String, Material> materialCatalog) {
+	public void printMaterialCatalog(Map<String, Material> materialCatalog) {
 		for (Material element : materialCatalog.values()) {
 			System.out.println(element.toString());
 		}

@@ -1,11 +1,11 @@
 package models;
 
-import java.util.TreeMap;
+import java.util.Map;
 
 public interface MaterialCatalogInterface {
 
 	public int getNumberOfItems();
 	public void addItem(Material item);
-	public TreeMap<String, Material> getMap();
+	public Map<String, Material> getMap();
 	public Material findItem(String title) throws MaterialNotFoundException ;
 }

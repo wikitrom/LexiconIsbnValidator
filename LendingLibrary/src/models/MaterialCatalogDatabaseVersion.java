@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -15,7 +16,6 @@ import java.util.TreeMap;
 public class MaterialCatalogDatabaseVersion implements MaterialCatalogInterface {
 
 	public MaterialCatalogDatabaseVersion() {
-		// TODO Auto-generated constructor stub
 		try {
 			Class.forName("org.apache.derby.jdbc.ClientDriver");
 
@@ -102,8 +102,8 @@ public class MaterialCatalogDatabaseVersion implements MaterialCatalogInterface 
 	 * @see models.MaterialCatalogInterface#getMap()
 	 */
 	@Override
-	public TreeMap<String, Material> getMap() {
-		TreeMap<String, Material> materialMap = new TreeMap<String, Material>();
+	public Map<String, Material> getMap() {
+		Map<String, Material> materialMap = new TreeMap<String, Material>();
 
 		try {
 			// connect to DB
@@ -208,7 +208,7 @@ public class MaterialCatalogDatabaseVersion implements MaterialCatalogInterface 
 
 }
 
-// Database table info for table: MATERIAL
+// FYI: Database table info for table: MATERIAL
 // ID |INTEGER |0 |10 |10 |AUTOINCRE&|NULL |NO
 // BARCODE |VARCHAR |NULL|NULL|20 |NULL |40 |YES
 // TITLE |VARCHAR |NULL|NULL|200 |NULL |400 |YES

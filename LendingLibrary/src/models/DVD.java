@@ -1,5 +1,7 @@
 package models;
 
+import ui.UI;
+
 public class DVD extends Material {
 
 	private String director;
@@ -9,15 +11,16 @@ public class DVD extends Material {
 
 	public DVD(String id, String title, String branch, String director, String catalogNo, int runnigTime) {
 		this(id, title, branch, director, catalogNo, runnigTime, false);
-		
-//		super(id, "DVD", title, branch);
-//		this.director = director;
-//		this.catalogNo = catalogNo;
-//		this.runnigTime = runnigTime;
-//		this.licenced = false;
+
+		// super(id, "DVD", title, branch);
+		// this.director = director;
+		// this.catalogNo = catalogNo;
+		// this.runnigTime = runnigTime;
+		// this.licenced = false;
 	}
 
-	public DVD(String id, String title, String branch, String director, String catalogNo, int runnigTime, boolean licenced) {
+	public DVD(String id, String title, String branch, String director, String catalogNo, int runnigTime,
+			boolean licenced) {
 		super(id, "DVD", title, branch);
 		this.director = director;
 		this.catalogNo = catalogNo;
@@ -32,7 +35,9 @@ public class DVD extends Material {
 	// public methods
 	@Override
 	public String toString() {
-		return getType() + "  " + getId() + " " + getTitle() + " / " + getDirector();
+		UI ui = new UI();
+		return ui.fixedLengthString(getType(), 5) + " " + ui.fixedLengthString(getId(), 10) + " "
+				+ ui.fixedLengthString(getTitle(), 25) + " " + ui.fixedLengthString(getDirector(), 20);
 	}
 
 	@Override
@@ -58,15 +63,23 @@ public class DVD extends Material {
 	}
 
 	public String getDirector() {
-		return director;
+		if (director != null) {
+			return director;
+		} else {
+			return "";
+		}
 	}
-	
+
 	public int getRunningTime() {
 		return runnigTime;
 	}
-	
+
 	public String getCatalogNumber() {
-		return catalogNo;
+		if (catalogNo != null) {
+			return catalogNo;
+		} else {
+			return "";
+		}
 	}
 
 }

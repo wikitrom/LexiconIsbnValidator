@@ -51,7 +51,9 @@ public class Main {
 		}
 		System.out.println();
 		ui.printHeader();
+		System.out.println("-----------------------------------------------------------------");
 		ui.printMaterialCatalog(materialCatalog.getMap());
+		System.out.println("-----------------------------------------------------------------");
 		System.out.println("Number of items in catalog: " + materialCatalog.getNumberOfItems());
 
 		// try {
