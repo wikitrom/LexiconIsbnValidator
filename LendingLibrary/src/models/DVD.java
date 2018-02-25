@@ -8,11 +8,21 @@ public class DVD extends Material {
 	private boolean licenced;
 
 	public DVD(String id, String title, String branch, String director, String catalogNo, int runnigTime) {
-		super(id, title, branch);
+		this(id, title, branch, director, catalogNo, runnigTime, false);
+		
+//		super(id, "DVD", title, branch);
+//		this.director = director;
+//		this.catalogNo = catalogNo;
+//		this.runnigTime = runnigTime;
+//		this.licenced = false;
+	}
+
+	public DVD(String id, String title, String branch, String director, String catalogNo, int runnigTime, boolean licenced) {
+		super(id, "DVD", title, branch);
 		this.director = director;
 		this.catalogNo = catalogNo;
 		this.runnigTime = runnigTime;
-		this.licenced = false;
+		this.licenced = licenced;
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22,7 +32,7 @@ public class DVD extends Material {
 	// public methods
 	@Override
 	public String toString() {
-		return " DVD: " + getId() + " " + getTitle() + " / " + getDirector();
+		return getType() + "  " + getId() + " " + getTitle() + " / " + getDirector();
 	}
 
 	@Override
@@ -39,7 +49,7 @@ public class DVD extends Material {
 		}
 	}
 
-	public boolean getLicence() {
+	public boolean getLicenced() {
 		return licenced;
 	}
 
@@ -49,6 +59,14 @@ public class DVD extends Material {
 
 	public String getDirector() {
 		return director;
+	}
+	
+	public int getRunningTime() {
+		return runnigTime;
+	}
+	
+	public String getCatalogNumber() {
+		return catalogNo;
 	}
 
 }

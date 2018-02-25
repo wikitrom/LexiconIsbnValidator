@@ -9,15 +9,15 @@ public class Book extends Material {
 
 	private String isbn;
 	private String author;
-	private int pageCount;
+	private int numberOfPages;
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// Constructors
 	public Book(String id, String title, String author, String isbn, String branch, int pages) {
-		super(id, title, branch);
+		super(id, "BOOK", title, branch);    // send data to parent object
 		this.author = author;
 		this.isbn = isbn;
-		this.pageCount = pages;
+		this.numberOfPages = pages;
 	}
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -27,7 +27,7 @@ public class Book extends Material {
 	// public methods
 	@Override
 	public String toString() {
-		return "BOOK: " + getId() + " " + getTitle() + " / " + getAuthor();
+		return getType() + " " + getId() + " " + getTitle() + " / " + getAuthor();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Book extends Material {
 	}
 
 	public int getPageCount() {
-		return pageCount;
+		return numberOfPages;
 	}
 
 	public void sendForRepair() {

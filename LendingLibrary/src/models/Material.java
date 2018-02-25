@@ -2,14 +2,16 @@ package models;
 
 public abstract class Material {
 	private String id;
+	private String type;
 	private String title;
 	private String branch;
 	private Customer borrower;
 
 	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// constructors
-	public Material(String id, String title, String branch) {
+	public Material(String id, String type, String title, String branch) {
 		this.id = id;
+		this.type = type;
 		this.title = title;
 		this.branch = branch;
 		borrower = null;
@@ -53,6 +55,10 @@ public abstract class Material {
 
 	public String getId() {
 		return id;
+	}
+
+	public String getType() {
+		return type;
 	}
 
 	public String getBranch() {

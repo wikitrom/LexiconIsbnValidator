@@ -10,6 +10,7 @@ public class UI {
 
 	public void printHeader() {
 		System.out.println("Type  ID    Title                 Author/Director");
+		System.out.println("-----------------------------------------------------------------");
 		;
 	}
 
