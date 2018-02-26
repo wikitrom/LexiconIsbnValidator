@@ -1,6 +1,7 @@
 package models.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,10 +10,10 @@ import models.Book;
 
 class BookTest {
 
-	private Book book1, book2, book3;
-	
+	private Book book1, book2, book3;	
 	@BeforeEach
 	void setUp() throws Exception {
+
 		book1 = new Book("0", "", "", "", "", 0);
 		book2 = new Book("1", "", "", "", "", 0);
 		book3 = new Book("0", "", "", "", "", 0);

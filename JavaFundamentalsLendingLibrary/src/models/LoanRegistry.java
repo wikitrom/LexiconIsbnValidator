@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-import uilities.LoanStatusType;
+import utilities.LoanStatusType;
 
 public class LoanRegistry {
 	private ArrayList<Loan> registry;

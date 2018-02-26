@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import uilities.LoanStatusType;
+import utilities.LoanStatusType;
 
 public class Loan {
 	private static int idCount = 0; // keep track of next available id

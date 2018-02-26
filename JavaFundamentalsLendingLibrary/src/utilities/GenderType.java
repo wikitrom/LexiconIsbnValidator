@@ -1,4 +1,4 @@
-package uilities;
+package utilities;
 
 public enum GenderType {
 	MALE, FEMALE, UNKNOWN;
