@@ -8,28 +8,46 @@ public class ValidateISBN {
 
 		isbn = isbn.replaceAll("-", ""); // trim ISBN-13 numbers
 
-		if (isbn.length() == 13)
-			return true;
-		
-		if ((isbn.length() < 10) || (isbn.length() > 13)) {
-			throw new NumberFormatException("ISBN number must have between 10 and 13 digits.");
-		}
+		if (isbn.length() == 13) {   // 13-digit ISBN
+			int digit;
+//			int checksum;
 
-		for (int i = 0; i < isbn.length(); i++) {
+//			for (int i = 0; i < 12; i++) {			
+			for (int i = 0; i < 13; i++) {
 
-			if (Character.isDigit(isbn.charAt(i))) {
-				total += (Character.getNumericValue(isbn.charAt(i)) * (10 - i));
-			} else if ((i == 9) && (isbn.charAt(i) == 'X')) {
-				total += 10;
-			} else {
-				throw new NumberFormatException("Provided ISBN has non-numerical character: " + isbn.charAt(i));
+				if (Character.isDigit(isbn.charAt(i))) {
+					digit = Character.getNumericValue(isbn.charAt(i));
+					total += (i % 2 == 0) ? digit * 1 : digit * 3;
+				} else {
+					throw new NumberFormatException("Provided ISBN has non-numerical character: " + isbn.charAt(i));
+				}
 			}
-		}
+//			checksum = 10 - (total % 10);
+//			if (checksum == 10)
+//				checksum = 0;
+//			return (checksum == Character.getNumericValue(isbn.charAt(12)));
+			return (total % 10== 0) ? true :false;  
+			
+		} else if (isbn.length() == 10) {
+			for (int i = 0; i < 10; i++) {
 
-		if ((total % 11) == 0) {
-			return true;
+				if (Character.isDigit(isbn.charAt(i))) {
+					total += (Character.getNumericValue(isbn.charAt(i)) * (10 - i));
+				} else if ((i == 9) && (isbn.charAt(i) == 'X')) {
+					total += 10;
+				} else {
+					throw new NumberFormatException("Provided ISBN has non-numerical character: " + isbn.charAt(i));
+				}
+			}
+
+			if ((total % 11) == 0) {
+				return true;
+			} else {
+				return false;
+			}
+
 		} else {
-			return false;
+			throw new NumberFormatException("An ISBN number must have 10 or 13 digits.");
 		}
 	}
 
