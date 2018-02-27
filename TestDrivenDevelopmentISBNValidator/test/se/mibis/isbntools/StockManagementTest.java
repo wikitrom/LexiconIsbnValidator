@@ -12,40 +12,32 @@ import static org.mockito.Mockito.when;
 
 public class StockManagementTest {
 
-	// @Before
-	// public void setUp() throws Exception {
-	//
-	// }
+	ExternalISBNDataServiceInterface webService, dbService;
+	StockManager stockManager;	
+	
+	 @Before
+	 public void setUp() throws Exception {	// 
+		// mock interfaces used by class under test
+		webService = mock(ExternalISBNDataServiceInterface.class);	// 
+		dbService = mock(ExternalISBNDataServiceInterface.class);
+
+		stockManager = new StockManager();
+		stockManager.setWebService(webService); 	// mock service
+		stockManager.setDbService(dbService); 			// mock service		
+	
+	 }
 
 	// positive tests
 	
-	// TESTs data using stubbed dependencies
+	// TESTs data using mocked classes
 	@Test
 	public void testCanGetACorrectLocatorCode() {
 
-		// external dependencies for the class under test are stubbed
-		ExternalISBNDataServiceInterface testWebService = new ExternalISBNDataServiceInterface() {
-
-			@Override
-			public Book lookup(String isbn) {
-				return new Book(isbn, "Mastering Java 9", "Edward Lavieri");
-			}
-		};
-
-		ExternalISBNDataServiceInterface testDbService = new ExternalISBNDataServiceInterface() {
-
-			@Override
-			public Book lookup(String isbn) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		};
-
-		StockManager stockManager = new StockManager();
-		stockManager.setWebService(testWebService); 	// stub service
-		stockManager.setDbService(testDbService); 			// stub service
-
+		// --- Preparation
 		String isbn = "1786468735";
+		when(dbService.lookup(anyString())).thenReturn(null);
+		when(webService.lookup(anyString())).thenReturn(new Book(isbn, "Mastering Java 9", "Edward Lavieri"));		
+		// --- Test
 		String locatorCode = stockManager.getLocatorCode(isbn);
 		assertEquals("8735E3", locatorCode);
 	}
@@ -54,21 +46,12 @@ public class StockManagementTest {
 	@Test
 	public void testDatabaseIsUsedIfDatabasePresent() {
 		// --- Preparation
-		// mock interfaces used by class under test
-		ExternalISBNDataServiceInterface dbService = mock(ExternalISBNDataServiceInterface.class);
-		ExternalISBNDataServiceInterface webService = mock(ExternalISBNDataServiceInterface.class);
-
 		// when lookup is called return a book
-		when(dbService.lookup("1786468735")).thenReturn(new Book("1786468735", "abc", "abc"));
-
 		String isbn = "1786468735";
-		StockManager stockManager = new StockManager();
-		stockManager.setWebService(webService); // to be able to mock service
-		stockManager.setDbService(dbService); // to be able to mock service
+		when(dbService.lookup(isbn)).thenReturn(new Book(isbn, "abc", "abc"));
 
 		// --- Test
 		String locatorCode = stockManager.getLocatorCode(isbn);
-
 		verify(dbService, times(1))
 			.lookup("1786468735");
 		verify(webService, times(0))
@@ -78,21 +61,13 @@ public class StockManagementTest {
 	@Test
 	public void testWebserviceIsUsedIfNoDataInDatabase() {
 		// --- Preparation
-		// mock interfaces used by class under test
-		ExternalISBNDataServiceInterface dbService = mock(ExternalISBNDataServiceInterface.class);
-		ExternalISBNDataServiceInterface webService = mock(ExternalISBNDataServiceInterface.class);
-
 		// when lookup is called return a book
-		when(dbService.lookup("1786468735")).thenReturn(null);
-		when(webService.lookup("1786468735")).thenReturn(new Book("1786468735", "abc", "abc"));
 		String isbn = "1786468735";
-		StockManager stockManager = new StockManager();
-		stockManager.setWebService(webService); // to be able to stub service
-		stockManager.setDbService(dbService); // to be able to stub service
-
+		when(dbService.lookup(isbn)).thenReturn(null);
+		when(webService.lookup(isbn)).thenReturn(new Book(isbn, "abc", "abc"));
+		
 		// --- Test
 		String locatorCode = stockManager.getLocatorCode(isbn);
-
 		verify(dbService, times(1))
 			.lookup("1786468735");
 		verify(webService, times(1))
