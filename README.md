@@ -1,3 +1,3 @@
 # lexicon
-EDU only - Lexicon classes
+EDU only - Lexicon classes ISBN Validator
 
